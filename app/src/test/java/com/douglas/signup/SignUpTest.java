@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 
 public class SignUpTest {
@@ -29,7 +30,8 @@ public class SignUpTest {
     @Test(expected = InvalidUserException.class)
     public void shouldNotRegisterUser_noFirstName() throws InvalidUserException {
         try {
-            userService.registerUser("Ok", "F", "123");
+            User user = userService.registerUser("", "F", "123");
+            assertNull(user);
         } catch (Exception e) {
             assertEquals("First name field is empty.", e.getMessage());
             throw e;
@@ -39,7 +41,8 @@ public class SignUpTest {
     @Test(expected = InvalidUserException.class)
     public void shouldNotRegisterUser_noLasttName() throws InvalidUserException {
         try {
-            userService.registerUser("Roger", "", "123");
+            User user = userService.registerUser("Roger", "", "123");
+            assertNull(user);
         } catch (Exception e) {
             assertEquals("Last name field is empty.", e.getMessage());
             throw e;
@@ -49,7 +52,8 @@ public class SignUpTest {
     @Test(expected = InvalidUserException.class)
     public void shouldNotRegisterUser_noPassword() throws InvalidUserException {
         try {
-            userService.registerUser("Roger", "F", "");
+            User user = userService.registerUser("Roger", "F", "");
+            assertNull(user);
         } catch (Exception e) {
             assertEquals("Password field is empty.", e.getMessage());
             throw e;
