@@ -29,7 +29,7 @@ public class SignUpTest {
     @Test(expected = InvalidUserException.class)
     public void shouldNotRegisterUser_noFirstName() throws InvalidUserException {
         try {
-            userService.registerUser("", "F", "123");
+            userService.registerUser("Ok", "F", "123");
         } catch (Exception e) {
             assertEquals("First name field is empty.", e.getMessage());
             throw e;
