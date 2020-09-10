@@ -1,13 +1,9 @@
 package com.douglas.signup.model;
 
-import kotlin.jvm.Transient;
-
 public class User {
 
     private String firstName;
     private String lastName;
-
-    @Transient
     private String password;
 
     public User() {}
