@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
-    name: Run Unit Tests
+    name: Test, Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
