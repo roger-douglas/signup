@@ -2,6 +2,20 @@ plugins {
     id 'com.android.application'
 }
 
+String switcherKey(String propertyName) {
+    String switcherKey
+    if (hasProperty(propertyName)) {
+        switcherKey = this.getProperty(propertyName)
+    } else {
+        def apiKeyPropertiesFile = rootProject.file("secrets.properties")
+        def apiKeyProperties = new Properties()
+        apiKeyProperties.load(new FileInputStream(apiKeyPropertiesFile))
+        switcherKey = apiKeyProperties[propertyName]
+    }
+
+    return switcherKey
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -14,6 +28,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		buildConfigField("String", "SECRET", "\"${switcherKey("secret")}\"")
     }
 
     buildTypes {
