@@ -22,6 +22,12 @@ public class SignUpTest {
     }
 
     @Test
+    public void shouldReadSecret() throws InvalidUserException {
+        String message = BuildConfig.SECRET;
+        assertEquals("This is a super secret message", message);
+    }
+
+    @Test
     public void shouldRegisterUser() throws InvalidUserException {
         User user = userService.registerUser("Roger", "F", "123");
         assertNotNull(user);
