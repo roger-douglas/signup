@@ -3,8 +3,6 @@ name: Android CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   test:
@@ -19,7 +17,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Unit tests
-        run: bash ./gradlew test --stacktrace
+        run: bash ./gradlew test -Psecret="%SECRET_MESSAGE%" --stacktrace
       - name: Build debug APK
         run: bash ./gradlew assembleDebug -Psecret="%SECRET_MESSAGE%" --stacktrace
       - name: Upload APK
